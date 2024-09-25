@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thmyelead.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<p>Hello users !!!</p>
+
+<div th:each="userDto: ${users}">
+    <p th:text="${userDto.getId()}"></p>
+    <p th:text="${userDto.getUsername()}"></p>
+</div>
+
+</body>
+</html>
