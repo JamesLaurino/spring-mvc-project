@@ -6,6 +6,9 @@ import com.fotovacreation.springMVC.service.ProductService;
 import com.fotovacreation.springMVC.service.ProductServiceMock;
 import com.fotovacreation.springMVC.service.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,8 +30,17 @@ public class ProductController
     @GetMapping("/product")
     public String getAllProduct(Model model)
     {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+//        System.out.println(userDetails.getUsername());
+//        System.out.println(userDetails.getPassword());
+//        userDetails.getAuthorities().forEach(System.out::println);
+
         List<ProductDto> productDtos = productService.getAllProducts();
         model.addAttribute("products", productDtos);
+        model.addAttribute("userDetails", userDetails);
+
         return "product";
     }
 
