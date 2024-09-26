@@ -1,10 +1,11 @@
 package com.fotovacreation.springMVC.repository;
 
 import com.fotovacreation.springMVC.model.UserDto;
+import com.fotovacreation.springMVC.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface UserRepository extends JpaRepository<UserDto, Integer>
+public interface UserRepository extends JpaRepository<UserEntity, Integer>
 {
-    UserDto findByUsername(final String username);
+    UserEntity findByUsername(final String username);
 }

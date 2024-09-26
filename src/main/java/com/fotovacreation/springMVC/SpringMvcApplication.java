@@ -1,6 +1,7 @@
 package com.fotovacreation.springMVC;
 
 import com.fotovacreation.springMVC.model.UserDto;
+import com.fotovacreation.springMVC.model.UserEntity;
 import com.fotovacreation.springMVC.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,11 +24,22 @@ public class SpringMvcApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		UserDto userDto1 = new UserDto("james", passwordEncoder.encode("1234"), "ADMIN");
-		UserDto userDto2 = new UserDto("thomas", passwordEncoder.encode("1234"), "USER");
 
-		userRepository.save(userDto1);
-		userRepository.save(userDto2);
+		UserEntity userEntity1 = UserEntity.builder()
+				.username("james")
+				.password( passwordEncoder.encode("1234"))
+				.role("ROLE_ADMIN")
+				.build();
+
+
+		UserEntity userEntity2 = UserEntity.builder()
+				.username("thomas")
+				.password( passwordEncoder.encode("1234"))
+				.role("ROLE_USER")
+				.build();
+
+		userRepository.save(userEntity1);
+		userRepository.save(userEntity2);
 
 	}
 }

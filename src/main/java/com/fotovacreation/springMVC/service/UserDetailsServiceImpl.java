@@ -1,8 +1,9 @@
 package com.fotovacreation.springMVC.service;
 
-import com.fotovacreation.springMVC.model.ProductDto;
 import com.fotovacreation.springMVC.model.UserDto;
+import com.fotovacreation.springMVC.model.UserEntity;
 import com.fotovacreation.springMVC.repository.UserRepository;
+import com.fotovacreation.springMVC.service.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -18,21 +19,18 @@ public class UserDetailsServiceImpl implements UserDetailsService
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 
-        final UserDto userDto = repository.findByUsername(username);
+        final UserEntity userEntity = repository.findByUsername(username);
 
-        if(userDto == null) {
+        if(userEntity == null) {
             throw new UsernameNotFoundException("Unknown user "+ username);
         }
-        return User.withUsername(userDto.getUsername())
-                .password(userDto.getPassword())
-                .roles(userDto.getRole())
-                .accountExpired(false)
-                .accountLocked(false)
-                .credentialsExpired(false)
-                .disabled(false)
-                .build();
+
+        return userMapper.entityToDto(userEntity);
     }
 }

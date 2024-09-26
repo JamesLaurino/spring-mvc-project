@@ -9,6 +9,7 @@
 
 <div th:each="userDto: ${users}">
     <p th:text="${userDto.getId()}"></p>
+    <p th:text="${userDto.getPassword()}"></p>
     <p th:text="${userDto.getUsername()}"></p>
 </div>
 
