@@ -12,9 +12,9 @@ public class ProductServiceMock
 {
     List<ProductDto> productDtos = new ArrayList<ProductDto>(
             Arrays.asList(
-            new ProductDto(1,"Pomme"),
-            new ProductDto(2,"Peche"),
-            new ProductDto(3,"Poire"))
+            new ProductDto("Pomme", 2.5F),
+            new ProductDto("Peche", 3.5F),
+            new ProductDto("Poire", 2.8F))
     );
 
 

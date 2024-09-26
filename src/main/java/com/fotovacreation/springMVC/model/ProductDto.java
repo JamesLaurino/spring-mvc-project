@@ -1,14 +1,12 @@
 package com.fotovacreation.springMVC.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter
+@Builder
 public class ProductDto
 {
-    private Integer id;
     private String name;
+    private float price;
 }

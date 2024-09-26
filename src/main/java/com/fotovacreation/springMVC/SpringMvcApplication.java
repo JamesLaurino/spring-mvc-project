@@ -1,7 +1,9 @@
 package com.fotovacreation.springMVC;
 
+import com.fotovacreation.springMVC.model.ProductEntity;
 import com.fotovacreation.springMVC.model.UserDto;
 import com.fotovacreation.springMVC.model.UserEntity;
+import com.fotovacreation.springMVC.repository.ProductRepository;
 import com.fotovacreation.springMVC.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +16,9 @@ public class SpringMvcApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private ProductRepository productRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -40,6 +45,19 @@ public class SpringMvcApplication implements CommandLineRunner {
 
 		userRepository.save(userEntity1);
 		userRepository.save(userEntity2);
+
+		ProductEntity productEntity1 = ProductEntity.builder()
+				.price(2.5F)
+				.name("Pomme")
+				.build();
+
+		ProductEntity productEntity2 = ProductEntity.builder()
+				.price(3.5F)
+				.name("Peche")
+				.build();
+
+		productRepository.save(productEntity1);
+		productRepository.save(productEntity2);
 
 	}
 }
