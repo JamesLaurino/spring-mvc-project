@@ -18,6 +18,15 @@ public class ProductMapper
                 .build();
     }
 
+    public ProductEntity dtoToEntity(ProductDto productDto)
+    {
+        return ProductEntity.
+                builder()
+                .name(productDto.getName())
+                .price(productDto.getPrice())
+                .build();
+    }
+
     public List<ProductDto> entitiesToDtos(List<ProductEntity> productEntities)
     {
         List<ProductDto> productDtos = new ArrayList<>();

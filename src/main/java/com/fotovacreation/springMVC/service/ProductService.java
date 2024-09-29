@@ -22,4 +22,10 @@ public class ProductService
         return productMapper.entitiesToDtos(productRepository.findAll());
     }
 
+    public String insertProduct(ProductDto productDto)
+    {
+        productRepository.save(productMapper.dtoToEntity(productDto));
+        return "insertion ok";
+    }
+
 }

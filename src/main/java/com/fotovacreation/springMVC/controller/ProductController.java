@@ -1,20 +1,17 @@
 package com.fotovacreation.springMVC.controller;
 
 import com.fotovacreation.springMVC.model.ProductDto;
-import com.fotovacreation.springMVC.repository.ProductRepository;
 import com.fotovacreation.springMVC.service.ProductService;
 import com.fotovacreation.springMVC.service.ProductServiceMock;
-import com.fotovacreation.springMVC.service.mapper.ProductMapper;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,15 +24,12 @@ public class ProductController
     @Autowired
     private ProductService productService;
 
+    /* GET PRODUCT */
     @GetMapping("/product")
     public String getAllProduct(Model model)
     {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-//        System.out.println(userDetails.getUsername());
-//        System.out.println(userDetails.getPassword());
-//        userDetails.getAuthorities().forEach(System.out::println);
 
         List<ProductDto> productDtos = productService.getAllProducts();
         model.addAttribute("products", productDtos);
@@ -52,6 +46,29 @@ public class ProductController
         return "product-details";
     }
 
+    /* ADD PRODUCT */
+    @GetMapping("/product/form")
+    public String formProduct(Model model)
+    {
+        ProductDto productDto = new ProductDto();
+        model.addAttribute("productDto",productDto);
+        return "form-product";
+    }
+
+    @PostMapping("/product/add")
+    public String addProduct(
+            @Valid @ModelAttribute("productDto") ProductDto productDto,
+            BindingResult bindingResult)
+    {
+        if(bindingResult.hasErrors())
+        {
+            return "redirect:/product/error";
+        }
+        productService.insertProduct(productDto);
+        return "redirect:/product";
+    }
+
+    /* DELETE PRODUCT */
     @DeleteMapping("/product/{id}")
     public String deleteProduct(@PathVariable("id") int productId,
                                 Model model)
@@ -61,6 +78,7 @@ public class ProductController
         return "delete-product";
     }
 
+    /* UPDATE PRODUCT */
     @PutMapping("/product/{id}/{name}")
     public String updateProduct(@PathVariable("id") int productId,
                                 @PathVariable("name") String name,
@@ -69,5 +87,12 @@ public class ProductController
         ProductDto productDto = productServiceMock.updateProduct(productId,name);
         model.addAttribute("productDto", productDto);
         return "update-product";
+    }
+
+    /* ERROR MESSAGE */
+    @GetMapping("/product/error")
+    public String errorProduct(Model model)
+    {
+        return "error-product";
     }
 }
