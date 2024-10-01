@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thmyelead.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Card</title>
+</head>
+<body>
+    <p>Get all card</p>
+
+    <div th:each="card: ${cards}">
+        <p>Photo name : </p> <p th:text="${card.getName()}"></p>
+        <p>URL photo : </p> <p th:text="${card.getPhotoUrl()}"></p>
+<!--        <img th:src="@{${'/images/' + card.getPhotoUrl()}}" width="150px" height="150px"/>-->
+        <img th:src="@{/images/{photoName}(photoName=${card.getPhotoUrl()})}" alt="">
+
+    </div>
+
+
+</body>
+</html>

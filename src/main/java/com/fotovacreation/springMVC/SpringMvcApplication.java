@@ -1,8 +1,9 @@
 package com.fotovacreation.springMVC;
 
+import com.fotovacreation.springMVC.model.CardEntity;
 import com.fotovacreation.springMVC.model.ProductEntity;
-import com.fotovacreation.springMVC.model.UserDto;
 import com.fotovacreation.springMVC.model.UserEntity;
+import com.fotovacreation.springMVC.repository.CardRepository;
 import com.fotovacreation.springMVC.repository.ProductRepository;
 import com.fotovacreation.springMVC.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class SpringMvcApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private CardRepository cardRepository;
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -58,6 +62,13 @@ public class SpringMvcApplication implements CommandLineRunner {
 
 		productRepository.save(productEntity1);
 		productRepository.save(productEntity2);
+
+		CardEntity cardEntity = CardEntity.builder()
+				.name("Arcbound ravager")
+				.photoUrl("arcbound_ravager.png")
+				.build();
+
+		cardRepository.save(cardEntity);
 
 	}
 }
