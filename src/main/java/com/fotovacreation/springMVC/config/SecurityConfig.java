@@ -30,7 +30,8 @@ public class SecurityConfig
                     .requestMatchers(HttpMethod.GET, "/user").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.POST, "/sign-in").permitAll()
                     .requestMatchers("/images/**").permitAll()
-                    .requestMatchers(HttpMethod.GET,"/card").permitAll()
+                    .requestMatchers(HttpMethod.GET,"/card/**").permitAll()
+                    .requestMatchers(HttpMethod.POST,"/card/**").permitAll()
                     .anyRequest().authenticated()). build();
         }
 
