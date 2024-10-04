@@ -1,7 +1,6 @@
 package com.fotovacreation.springMVC.controller;
 
 import com.fotovacreation.springMVC.model.CardEntity;
-import com.fotovacreation.springMVC.model.ProductDto;
 import com.fotovacreation.springMVC.repository.CardRepository;
 import com.fotovacreation.springMVC.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;

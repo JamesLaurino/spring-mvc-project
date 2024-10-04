@@ -32,6 +32,7 @@ public class SecurityConfig
                     .requestMatchers("/images/**").permitAll()
                     .requestMatchers(HttpMethod.GET,"/card/**").permitAll()
                     .requestMatchers(HttpMethod.POST,"/card/**").permitAll()
+                    .requestMatchers(HttpMethod.GET,"/furniture/**").permitAll()
                     .anyRequest().authenticated()). build();
         }
 

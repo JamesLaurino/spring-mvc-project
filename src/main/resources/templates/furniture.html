@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Products</title>
+</head>
+<body>
+<h1>List of Products</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    <tr th:each="furniture : ${furniturePage.content}">
+        <td th:text="${furniture.getId()}"></td>
+        <td th:text="${furniture.getName()}"></td>
+    </tr>
+</table>
+
+<!-- Pagination Links -->
+<div>
+    <span th:text="'Page ' + ${currentPage + 1} + ' of ' + ${totalPages}"></span>
+
+    <a th:if="${currentPage > 0}"
+       th:href="@{/furniture(page=${currentPage - 1}, size=${furniturePage.size})}">Previous</a>
+
+    <a th:if="${currentPage < totalPages - 1}"
+       th:href="@{/furniture(page=${currentPage + 1}, size=${furniturePage.size})}">Next</a>
+</div>
+</body>
+</html>
