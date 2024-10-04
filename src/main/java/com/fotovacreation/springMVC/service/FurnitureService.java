@@ -16,6 +16,11 @@ public class FurnitureService
     @Autowired
     private FurnitureRepository furnitureRepository;
 
+    public FurnitureEntity getById(int id)
+    {
+        return furnitureRepository.findById(id).orElseThrow();
+    }
+
     public Page<FurnitureEntity> getAllWithPage(int page, int size)
     {
         Pageable pageable = PageRequest.of(page,size);
