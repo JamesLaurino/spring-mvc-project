@@ -33,6 +33,8 @@ public class SecurityConfig
                     .requestMatchers(HttpMethod.GET,"/card/**").permitAll()
                     .requestMatchers(HttpMethod.POST,"/card/**").permitAll()
                     .requestMatchers(HttpMethod.GET,"/furniture/**").permitAll()
+                    .requestMatchers(HttpMethod.GET,"/category/**").permitAll()
+                    .requestMatchers(HttpMethod.POST,"/category/**").permitAll()
                     .anyRequest().authenticated()). build();
         }
 

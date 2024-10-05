@@ -21,3 +21,8 @@ INSERT INTO furniture_entity (id, name) VALUES (20, 'Patio Chair');
 INSERT INTO furniture_entity (id, name) VALUES (21, 'Dining Bench');
 INSERT INTO furniture_entity (id, name) VALUES (22, 'Vanity Table');
 INSERT INTO furniture_entity (id, name) VALUES (23, 'Chaise Lounge');
+INSERT INTO category_entity (id, name, type) VALUES (1, 'furniture', "A");
+INSERT INTO category_entity (id, name, type) VALUES (2, 'fruit', "B");
+INSERT INTO category_entity (id, name, type) VALUES (3, 'Mobile', "B");
+INSERT INTO category_entity (id, name, type) VALUES (4, 'Computer', "A");
+INSERT INTO category_entity (id, name, type) VALUES (5, 'Cloth', "B");

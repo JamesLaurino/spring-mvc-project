@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All categories</title>
+</head>
+<body>
+
+    <div class="mt-3" th:each="categoryEntity: ${categoryEntities}">
+        <div th:if="${categoryEntity.getType() == 'B'}">
+            <p>Category name : </p> <p th:text="${categoryEntity.getName()}"></p>
+        </div>
+        <div th:if="${categoryEntity.getType() == 'B'}">
+            <p>Category type : </p>  <p th:text="${categoryEntity.getType()}"></p>
+        </div>
+        <div>
+            <p>*******************************************************************</p>
+        </div>
+    </div>
+
+</body>
+</html>

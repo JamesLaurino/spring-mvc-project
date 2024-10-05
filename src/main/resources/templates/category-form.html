@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>User Registration</h1>
+
+<form th:action="@{/category/form}" th:object="${categoryEntity}" method="POST">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Enter your name"/>
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+    </div>
+
+    <div>
+        <label for="type">Type:</label>
+        <input type="text" id="type" th:field="*{type}" placeholder="Enter type"/>
+        <div th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></div>
+    </div>
+
+
+    <button type="submit">Register</button>
+</form>
+
+</body>
+</html>
