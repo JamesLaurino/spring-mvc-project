@@ -6,6 +6,9 @@
 </head>
 <body>
 
+<!-- Inclure la navbar -->
+<div th:insert="fragment/navbar :: navbar"></div>
+
     <div class="mt-3" th:each="categoryEntity: ${categoryEntities}">
         <div th:if="${categoryEntity.getType() == 'B'}">
             <p>Category name : </p> <p th:text="${categoryEntity.getName()}"></p>
